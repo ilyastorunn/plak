@@ -128,3 +128,22 @@
 .next-button:hover {
   background: rgba(255, 255, 255, 0.9);
 }
+
+.album-info {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.artist {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.album-name {
+  font-size: 16px;
+  color: #666;
+}

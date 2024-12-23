@@ -13,15 +13,15 @@ import album8 from "../../public/pics/album8.jpg";
 import album9 from "../../public/pics/album9.jpg";
 
 const images = [
-  album1,
-  album2,
-  album3,
-  album4,
-  album5,
-  album6,
-  album7,
-  album8,
-  album9,
+  { src: album1, artist: "Artist 1", albumName: "Album 1" },
+  { src: album2, artist: "Artist 2", albumName: "Album 2" },
+  { src: album3, artist: "Artist 3", albumName: "Album 3" },
+  { src: album4, artist: "Artist 4", albumName: "Album 4" },
+  { src: album5, artist: "Artist 5", albumName: "Album 5" },
+  { src: album6, artist: "Artist 6", albumName: "Album 6" },
+  { src: album7, artist: "Artist 7", albumName: "Album 7" },
+  { src: album8, artist: "Artist 8", albumName: "Album 8" },
+  { src: album9, artist: "Artist 9", albumName: "Album 9" },
 ];
 
 const Slider = () => {
@@ -54,15 +54,24 @@ const Slider = () => {
   return (
     <div className="carousel-container">
       <div id="carousel">
-        {images.map((src, index) => (
-          <div
-            key={index}
-            className={getClassName(index)}
-            onClick={() => setSelectedIndex(index)}
-          >
-            <img src={src} alt={`carousel-${index}`} />
-          </div>
-        ))}
+        {images.map((img, index) => {
+          const className = getClassName(index);
+          return (
+            <div
+              key={index}
+              className={className}
+              onClick={() => setSelectedIndex(index)}
+            >
+              <img src={img.src} alt={`carousel-${index}`} />
+              {className === "selected" && (
+                <div className="album-info">
+                  <p className="artist">{img.artist}</p>
+                  <p className="album-name">{img.albumName}</p>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
       <div className="buttons">
         <button className="prev-button" onClick={() => moveToSelected("prev")}>
