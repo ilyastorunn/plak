@@ -13,15 +13,19 @@ import album8 from "../../public/pics/album8.jpg";
 import album9 from "../../public/pics/album9.jpg";
 
 const images = [
-  { src: album1, artist: "Artist 1", albumName: "Album 1" },
-  { src: album2, artist: "Artist 2", albumName: "Album 2" },
-  { src: album3, artist: "Artist 3", albumName: "Album 3" },
-  { src: album4, artist: "Artist 4", albumName: "Album 4" },
-  { src: album5, artist: "Artist 5", albumName: "Album 5" },
-  { src: album6, artist: "Artist 6", albumName: "Album 6" },
-  { src: album7, artist: "Artist 7", albumName: "Album 7" },
-  { src: album8, artist: "Artist 8", albumName: "Album 8" },
-  { src: album9, artist: "Artist 9", albumName: "Album 9" },
+  { src: album1, artist: "The Chocolate Jams", albumName: "Mounds" },
+  { src: album2, artist: "Mieko Hirota", albumName: "A Woman Am I" },
+  { src: album3, artist: "Cappuccino", albumName: "I Can't Explain" },
+  {
+    src: album4,
+    artist: "Sai Hsai Mao",
+    albumName: "Build A Hospital For Broken Hearts",
+  },
+  { src: album5, artist: "Ernest Ranglin", albumName: "Surfin" },
+  { src: album6, artist: "Valerie Cizmarova", albumName: "Padal Dest" },
+  { src: album7, artist: "Hiromasa Suzuki", albumName: "High Flying" },
+  { src: album8, artist: "Ансамбль Иверия", albumName: "Тема Аэта" },
+  { src: album9, artist: "Kimiko Kasai", albumName: "Unfinished Life" },
 ];
 
 const Slider = () => {
@@ -74,10 +78,16 @@ const Slider = () => {
         })}
       </div>
       <div className="buttons">
-        <button className="prev-button" onClick={() => moveToSelected("prev")}>
+        <button
+          className="prev-button text-customgray hover:text-customorange text-4xl border-none bg-transparent transition-all duration-300 hover:scale-125"
+          onClick={() => moveToSelected("prev")}
+        >
           &#8249;
         </button>
-        <button className="next-button" onClick={() => moveToSelected("next")}>
+        <button
+          className="next-button text-customgray hover:text-customorange text-4xl border-none bg-transparent transition-all duration-300 hover:scale-125"
+          onClick={() => moveToSelected("next")}
+        >
           &#8250;
         </button>
       </div>

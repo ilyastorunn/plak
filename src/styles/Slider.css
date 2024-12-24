@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
   position: relative;
 }
 
@@ -110,7 +110,6 @@
 
 .prev-button,
 .next-button {
-  background: rgba(255, 255, 255, 0.7);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -122,13 +121,8 @@
   justify-content: center;
   transition: background 0.3s;
   pointer-events: auto;
+  outline: none;
 }
-
-.prev-button:hover,
-.next-button:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
-
 .album-info {
   position: absolute;
   bottom: -60px;

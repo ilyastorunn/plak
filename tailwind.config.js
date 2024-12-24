@@ -4,14 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        white: "#F5EDF0",
-        gray: "#4B5E6C",
-        black: "#06080F",
-        orange: "#D7521D",
+        customWhite: "#F5EDF0",
+        customgray: "#4B5E6C",
+        customblack: "#06080F",
+        customorange: "#D7521D",
       },
       fontFamily: {
         Magtis: ["Magtis", "sans-serif"],
         Inter: ["Inter", "sans-serif"],
+      },
+      animation: {
+        'spin': 'spin 2s linear infinite',
+        'spin-slow': 'spin 5s linear infinite',
       },
     },
   },
