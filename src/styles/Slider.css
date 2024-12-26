@@ -73,6 +73,10 @@
 
 #carousel .selected img {
   width: 350px;
+  position: relative;
+  z-index: 1;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 #carousel .next {
