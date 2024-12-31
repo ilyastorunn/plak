@@ -4,16 +4,10 @@ import { MdArrowRightAlt } from "react-icons/md";
 const Button = () => {
   return (
     <button className="cta">
-      <span className="hover-underline-animation flex items-center">
+      <span className="hover-underline-animation font-Inter flex items-center">
         EXPLORE NOW!
         <MdArrowRightAlt className="icon" />
       </span>
-      {/* <svg width="24" height="12" viewBox="0 0 24 12" className="arrow">
-        <path
-          d="M20 6L14 0L15.4 1.4L19.2 5H0V7H19.2L15.4 10.6L14 12L20 6Z"
-          fill="currentColor"
-        />
-      </svg> */}
     </button>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Slider from "../components/Slider";
+import ImageSlider from "../components/ImageSlider";
 import LoadingVinyl from "../components/LoadingVinyl";
 
 export default function Albums() {
@@ -10,5 +10,5 @@ export default function Albums() {
       setIsLoading(false);
     }, 2000);
   }, []);
-  return <>{isLoading ? <LoadingVinyl /> : <Slider />}</>;
+  return <>{isLoading ? <LoadingVinyl /> : <ImageSlider />}</>;
 }

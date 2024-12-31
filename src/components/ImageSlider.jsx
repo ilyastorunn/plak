@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 const images = [
   { src: '../../public/pics/album1.jpg', artist: 'The Chocolate Jam Co', albumName: 'The Speed of Earth' },
@@ -15,6 +16,7 @@ const images = [
 const ImageSlider = () => {
   const [selectedIndex, setSelectedIndex] = useState(3)
   const [vinylVisible, setVinylVisible] = useState(true)
+  const navigate = useNavigate()
 
   const moveToSelected = (direction) => {
     setVinylVisible(false)
@@ -51,22 +53,27 @@ const ImageSlider = () => {
   const getStyles = (className) => {
     switch (className) {
       case 'selected':
-        return 'z-30 translate-x-0 translate-y-0 scale-100'
+        return 'z-30 translate-x-0 translate-y-0 scale-100 hover:scale-[1.02] transition-transform duration-300'
       case 'next':
-        return 'z-20 translate-x-[250px] translate-y-[-10px] scale-[0.65]'
+        return 'z-20 translate-x-[250px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
       case 'nextRightSecond':
-        return 'z-10 translate-x-[450px] translate-y-[-20px] scale-[0.5]'
+        return 'z-10 translate-x-[450px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
       case 'prev':
-        return 'z-20 translate-x-[-250px] translate-y-[-10px] scale-[0.65]'
+        return 'z-20 translate-x-[-250px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
       case 'prevLeftSecond':
-        return 'z-10 translate-x-[-450px] translate-y-[-20px] scale-[0.5]'
+        return 'z-10 translate-x-[-450px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
       default:
         return 'opacity-0 translate-x-0 scale-0'
     }
   }
 
+  const handleAlbumClick = (index) => {
+    setSelectedIndex(index)
+    navigate(`/player/${index}`)
+  }
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-white p-8">
+    <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-8">
       <div className="relative h-[600px] w-full max-w-[1400px] flex justify-center items-center mx-auto">
         <div className="relative w-full flex justify-center items-center">
           {images.map((img, index) => {
@@ -76,22 +83,22 @@ const ImageSlider = () => {
               <div
                 key={index}
                 className={`absolute transition-all duration-500 cursor-pointer ${getStyles(className)}`}
-                onClick={() => setSelectedIndex(index)}
+                onClick={() => handleAlbumClick(index)}
               >
                 <div className="relative">
                   {isSelected && (
                     <div 
-                      className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[400px] h-[400px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out
-                        ${vinylVisible ? 'opacity-100 scale-100 -translate-y-1/2' : 'opacity-0 scale-80 translate-y-0'}`}
+                      className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[300px] h-[300px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out
+                        ${vinylVisible ? 'opacity-100 scale-100 -translate-y-[45%]' : 'opacity-0 scale-80 translate-y-0'}`}
                     >
                       <div className="w-full h-full relative animate-spin-slow">
                         <img
                           src={img.src}
                           alt={`Vinyl for ${img.albumName}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover opacity-90"
                         />
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] rounded-full bg-black">
-                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20px] h-[20px] rounded-full bg-gray-600" />
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[75px] h-[75px] rounded-full bg-zinc-900">
+                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[15px] h-[15px] rounded-full bg-zinc-700" />
                         </div>
                       </div>
                     </div>
@@ -99,13 +106,22 @@ const ImageSlider = () => {
                   <img
                     src={img.src}
                     alt={`Album cover for ${img.albumName}`}
-                    className="w-[400px] h-[400px] rounded-lg shadow-sm transition-all duration-500 object-cover relative z-10"
+                    className="w-[400px] h-[400px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5"
                   />
                 </div>
                 {isSelected && (
                   <div className="absolute -bottom-16 left-0 w-full text-center">
-                    <p className="text-xl font-semibold mb-1 text-gray-800">{img.artist}</p>
-                    <p className="text-lg text-gray-600">{img.albumName}</p>
+                    <p className="text-lg font-Magtis font-medium mb-1 text-zinc-800">{img.artist}</p>
+                    <p className="text-base font-Inter text-zinc-500 font-light">{img.albumName}</p>
+                    <button
+                      className="mt-4 px-4 py-2 bg-zinc-800 text-white rounded-full text-sm font-Inter hover:bg-zinc-700 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/player/${index}`)
+                      }}
+                    >
+                      Play Album
+                    </button>
                   </div>
                 )}
               </div>
@@ -115,18 +131,18 @@ const ImageSlider = () => {
       </div>
       <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between px-5 box-border pointer-events-none z-40 max-w-[1400px]">
         <button
-          className="text-gray-800 hover:text-gray-600 text-4xl border-none bg-transparent transition-all duration-300 hover:scale-125 pointer-events-auto"
+          className="text-zinc-600 hover:text-zinc-800 border-none bg-transparent transition-colors duration-300 pointer-events-auto"
           onClick={() => moveToSelected('prev')}
           aria-label="Previous image"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="50" 
-            height="50" 
+            width="40" 
+            height="40" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
-            strokeWidth="2" 
+            strokeWidth="1.5" 
             strokeLinecap="round" 
             strokeLinejoin="round"
           >
@@ -134,18 +150,18 @@ const ImageSlider = () => {
           </svg>
         </button>
         <button
-          className="text-gray-800 hover:text-gray-600 text-4xl border-none bg-transparent transition-all duration-300 hover:scale-125 pointer-events-auto"
+          className="text-zinc-600 hover:text-zinc-800 border-none bg-transparent transition-colors duration-300 pointer-events-auto"
           onClick={() => moveToSelected('next')}
           aria-label="Next image"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="50" 
-            height="50" 
+            width="40" 
+            height="40" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
-            strokeWidth="2" 
+            strokeWidth="1.5" 
             strokeLinecap="round" 
             strokeLinejoin="round"
           >

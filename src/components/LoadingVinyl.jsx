@@ -3,7 +3,7 @@ import React from "react";
 
 const LoadingVinyl = () => {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#F5EDF0]">
       <img
         src="../../public/pics/vinyl.png"
         alt="Loading Vinyl"
