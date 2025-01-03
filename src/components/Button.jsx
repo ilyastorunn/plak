@@ -3,46 +3,16 @@ import { MdArrowRightAlt } from "react-icons/md";
 
 const Button = () => {
   return (
-    <button className="cta">
-      <span className="hover-underline-animation font-Inter flex items-center">
+    <button className="cta border-none bg-transparent cursor-pointer flex items-center gap-2 p-0">
+      <span className="hover-underline-animation relative text-[#4B5E6C] hover:text-customorange pb-1 text-base tracking-[2px] uppercase font-medium font-Inter flex items-center group">
         EXPLORE NOW!
-        <MdArrowRightAlt className="icon" />
+        <MdArrowRightAlt className="icon pl-1 inline-flex items-center text-[#4B5E6C] group-hover:text-customorange" />
       </span>
     </button>
   );
 };
 
 const styles = `
-.cta {
-  border: none;
-  background: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0;
-}
-
-.cta span {
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.icon {
-  padding-left: 4px;
-  display: inline-flex;
-  align-items: center;
-  color: #4B5E6C;
-}
-
-.hover-underline-animation {
-  position: relative;
-  color: #4B5E6C;
-  padding-bottom: 4px;
-}
-
 .hover-underline-animation:after {
   content: "";
   position: absolute;
@@ -53,21 +23,16 @@ const styles = `
   left: 0;
   background-color: #4B5E6C;
   transform-origin: bottom right;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .cta:hover .hover-underline-animation:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+  background-color: #D7521D;
 }
 
-.flex {
-  display: flex;
-}
 
-.items-center {
-  align-items: center;
-}
 `;
 
 const StyleSheet = () => <style>{styles}</style>;
