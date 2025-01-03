@@ -9,7 +9,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/albums" element={<Albums />} />
-          <Route path="/player/:id" element={<Player />} />
+          {/* <Route path="/player/:id" element={<Player />} /> */}
+          <Route path="/player" element={<Player />} />
         </Routes>
       </BrowserRouter>
    
