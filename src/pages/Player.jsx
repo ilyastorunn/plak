@@ -84,7 +84,7 @@ const Player = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5EDF0] p-8">
       <Link
-        to="/"
+        to="/albums"
         className="absolute top-8 left-8 text-zinc-600 hover:text-zinc-800 transition-colors"
       >
         ← Back to Albums

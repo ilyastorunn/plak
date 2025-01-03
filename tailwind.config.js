@@ -12,6 +12,8 @@ export default {
       fontFamily: {
         Magtis: ["Magtis", "sans-serif"],
         Inter: ["Inter", "sans-serif"],
+        PoppinsRegular: ["Poppins", "serif"],
+        Lora: ["Lora", "serif"],
       },
       animation: {
         'spin': 'spin 2s linear infinite',

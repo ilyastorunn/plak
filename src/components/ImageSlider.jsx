@@ -110,18 +110,9 @@ const ImageSlider = () => {
                   />
                 </div>
                 {isSelected && (
-                  <div className="absolute -bottom-16 left-0 w-full text-center">
-                    <p className="text-lg font-Magtis font-medium mb-1 text-zinc-800">{img.artist}</p>
-                    <p className="text-base font-Inter text-zinc-500 font-light">{img.albumName}</p>
-                    <button
-                      className="mt-4 px-4 py-2 bg-zinc-800 text-white rounded-full text-sm font-Inter hover:bg-zinc-700 transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        navigate(`/player/${index}`)
-                      }}
-                    >
-                      Play Album
-                    </button>
+                  <div className="absolute -bottom-16 left-0 w-full text-center z-20">
+                    <p className="text-lg font-Lora font-medium mb-1 text-zinc-800">{img.artist}</p>
+                    <p className="text-base font-Lora text-zinc-500 font-light">{img.albumName}</p>
                   </div>
                 )}
               </div>
@@ -129,16 +120,27 @@ const ImageSlider = () => {
           })}
         </div>
       </div>
+      <div className="flex items-center justify-center bottom-10 pt-4">
+        <button
+          className="mt-4 px-4 py-2 bg-customblack text-customWhite rounded-full text-sm font-Inter hover:bg-customorange transition-colors duration-500"
+          onClick={(e) => {
+            e.stopPropagation()
+            navigate(`/player/${selectedIndex}`)
+          }}
+        >
+          Play Album
+        </button>
+      </div>
       <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between box-border pointer-events-none z-40 max-w-[1200px] px-8">
         <button
-          className="text-zinc-600 hover:text-zinc-800 border-none bg-transparent transition-colors duration-300 pointer-events-auto"
+          className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 pointer-events-auto"
           onClick={() => moveToSelected('prev')}
           aria-label="Previous image"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="40" 
-            height="40" 
+            width="50" 
+            height="50" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -150,14 +152,14 @@ const ImageSlider = () => {
           </svg>
         </button>
         <button
-          className="text-zinc-600 hover:text-zinc-800 border-none bg-transparent transition-colors duration-300 pointer-events-auto"
+          className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 pointer-events-auto"
           onClick={() => moveToSelected('next')}
           aria-label="Next image"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="40" 
-            height="40" 
+            width="50" 
+            height="50" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 

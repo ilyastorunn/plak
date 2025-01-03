@@ -10,5 +10,6 @@ export default function Albums() {
       setIsLoading(false);
     }, 2000);
   }, []);
-  return <>{isLoading ? <LoadingVinyl /> : <ImageSlider />}</>;
+  // return <>{isLoading ? <LoadingVinyl /> : <ImageSlider />}</>;
+  return <><ImageSlider /></>
 }
