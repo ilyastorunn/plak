@@ -55,13 +55,13 @@ const ImageSlider = () => {
       case 'selected':
         return 'z-30 translate-x-0 translate-y-0 scale-100 hover:scale-[1.02] transition-transform duration-300'
       case 'next':
-        return 'z-20 translate-x-[200px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
+        return 'z-20 translate-x-[240px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
       case 'nextRightSecond':
-        return 'z-10 translate-x-[350px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
+        return 'z-10 translate-x-[380px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
       case 'prev':
-        return 'z-20 translate-x-[-200px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
+        return 'z-20 translate-x-[-240px] translate-y-[-10px] scale-[0.65] hover:scale-[0.67] transition-transform duration-300'
       case 'prevLeftSecond':
-        return 'z-10 translate-x-[-350px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
+        return 'z-10 translate-x-[-380px] translate-y-[-20px] scale-[0.5] hover:scale-[0.52] transition-transform duration-300'
       default:
         return 'opacity-0 translate-x-0 scale-0'
     }
@@ -129,7 +129,7 @@ const ImageSlider = () => {
           })}
         </div>
       </div>
-      <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between px-5 box-border pointer-events-none z-40 max-w-[1000px]">
+      <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between box-border pointer-events-none z-40 max-w-[1200px] px-8">
         <button
           className="text-zinc-600 hover:text-zinc-800 border-none bg-transparent transition-colors duration-300 pointer-events-auto"
           onClick={() => moveToSelected('prev')}
