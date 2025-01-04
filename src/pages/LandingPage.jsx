@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#F5EDF0]">
+    <div className="min-h-screen w-full flex items-center justify-center bg-customWhite">
       <div className="flex items-center justify-center flex-col gap-[40px] shrink-0">
         <span className="font-Magtis text-center text-7xl font-extrabold text-customgray">
           "plak"
