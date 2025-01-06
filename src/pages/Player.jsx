@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
+import { IoPlayOutline } from "react-icons/io5";
 
 const images = [
   {
@@ -81,6 +82,10 @@ const Player = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-customWhite p-8">
       <Link
@@ -108,9 +113,10 @@ const Player = () => {
             {/* <img src={album.src} alt={`${album.name} bt ${album.artist}`} /> */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div
-                className="w-[95%] h-[95%] rounded-full bg-customgray shadow-lg transition-transform duration-1000 animate-spin-slow"
+                className={`w-[95%] h-[95%] rounded-full bg-customgray shadow-lg transition-transform duration-1000
+                  ${isPlaying ? "animate-spin-slow" : "rotate-0"}`}
               >
-                <div className="absolute inset-0 rounded-full overflow-hidden opacity-40">
+                <div className="absolute inset-0 rounded-full overflow-hidden opacity-100">
                   <img
                     src={album.src}
                     alt="Vinyl texture"
@@ -120,19 +126,10 @@ const Player = () => {
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[15%] h-[15%] rounded-full bg-zinc-800">
                   <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%] h-[20%] rounded-full bg-zinc-600" />
                 </div>
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute inset-0 rounded-full border border-zinc-800"
-                    style={{
-                      margin: `${(i + 1) * 8}%`,
-                      opacity: 1 - i * 0.1,
-                    }}
-                  />
-                ))}
               </div>
             </div>
-          </div> */
+          </div>{" "}
+          */
         </div>
         <div className="bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-2xl font-semibold text-zinc-800 mb-2">
@@ -153,24 +150,40 @@ const Player = () => {
               {formatTime(duration)}
             </span>
           </div>
-          <div className="flex justify-center">
+          <div className="controls flex items-center justify-center gap-4 mt-4">
             <button
-              onClick={togglePlay}
-              className="bg-zinc-800 text-white rounded-full w-16 h-16 flex items-center justify-center focus:outline-none hover:bg-zinc-700 transition-colors"
+              onClick={() => console.log("Previous")}
+              className="prev-button"
             >
-              {isPlaying ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 12H5m7-7l-7 7 7 7"
+                />
+              </svg>
+            </button>
+            <button onClick={handlePlayPause} className="play-pause-button">
+              <IoPlayOutline />
+              {/* {isPlaying ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-8 h-8"
+                  class="ionicon"
+                  viewBox="0 0 512 512"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M112 111v290c0 17.44 17 28.52 31 20.16l247.9-148.37c12.12-7.25 12.12-26.33 0-33.58L143 90.84c-14-8.36-31 2.72-31 20.16z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-miterlimit="10"
+                    stroke-width="32"
                   />
                 </svg>
               ) : (
@@ -194,7 +207,23 @@ const Player = () => {
                     d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-              )}
+              )} */}
+            </button>
+            <button onClick={() => console.log("Next")} className="next-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-8 h-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 12h14m-7-7l7 7-7 7"
+                />
+              </svg>
             </button>
           </div>
         </div>
