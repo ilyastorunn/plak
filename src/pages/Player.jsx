@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
-import { IoPlayOutline } from "react-icons/io5";
+import {
+  IoPlayOutline,
+  IoPlayBackOutline,
+  IoPlayForwardOutline,
+  IoReturnDownBackOutline,
+} from "react-icons/io5";
 
 const images = [
   {
@@ -92,141 +97,68 @@ const Player = () => {
         to="/albums"
         className="absolute top-8 left-8 text-customblack hover:text-customgray transition-colors"
       >
-        Back to Albums
+        <div className="relative">
+          <span>Albums</span>
+          <IoReturnDownBackOutline className="w-6 h-6 absolute -bottom-4 -right-0" />
+        </div>
       </Link>
-      <div className="w-full max-w-md">
-        <div className="relative mb-8">
-          {/* <div className="flex justify-center items-center h-full">
-            <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out opacity-100 scale-100">
-              <div className="w-full h-full relative animate-spin-slow">
-                <img
-                  src={album.src}
-                  alt={`${album.name} by ${album.artist}`}
-                  />
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[50px] h-[50px] rounded-full bg-zinc-900">
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[10px] h-[10px] rounded-full bg-zinc-700" />
-                </div>
-              </div>
-            </div>
-          </div> */}
-          <div className="aspect-square relative">
-            {/* <img src={album.src} alt={`${album.name} bt ${album.artist}`} /> */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                className={`w-[95%] h-[95%] rounded-full bg-customgray shadow-lg transition-transform duration-1000
+      <div className="bg-[#FAF9F6] rounded-lg shadow-lg px-8 pb-8 pt-4">
+        <div className="w-full max-w-md">
+          <div className="relative mb-8">
+            <div className="aspect-square relative">
+              {/* <img src={album.src} alt={`${album.name} bt ${album.artist}`} /> */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className={`w-[95%] h-[95%] rounded-full bg-customgray shadow-lg transition-transform duration-1000
                   ${isPlaying ? "animate-spin-slow" : "rotate-0"}`}
-              >
-                <div className="absolute inset-0 rounded-full overflow-hidden opacity-100">
-                  <img
-                    src={album.src}
-                    alt="Vinyl texture"
-                    className="w-full h-full object cover"
-                  />
-                </div>
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[15%] h-[15%] rounded-full bg-zinc-800">
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%] h-[20%] rounded-full bg-zinc-600" />
+                >
+                  <div className="absolute inset-0 rounded-full overflow-hidden opacity-100">
+                    <img
+                      src={album.src}
+                      alt="Vinyl texture"
+                      className="w-full h-full object cover"
+                    />
+                  </div>
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[15%] h-[15%] rounded-full bg-customblack">
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%] h-[20%] rounded-full bg-customgray" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>{" "}
-          */
         </div>
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-semibold text-zinc-800 mb-2">
-            {album.albumName}
-          </h2>
-          <h3 className="text-lg text-zinc-600 mb-6">{album.artist}</h3>
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-sm text-zinc-500">
-              {formatTime(currentTime)}
-            </span>
-            <div className="w-full mx-4 bg-zinc-200 rounded-full h-1">
-              <div
-                className="bg-zinc-800 h-1 rounded-full transition-all duration-200"
-                style={{ width: `${(currentTime / duration) * 100}%` }}
-              />
-            </div>
-            <span className="text-sm text-zinc-500">
-              {formatTime(duration)}
-            </span>
+        {/* <div className="bg-white rounded-lg shadow-lg p-8"> //jjj */}
+        <h2 className="text-2xl text-customblack mb-2">
+          {album.albumName}
+        </h2>
+        <h3 className="text-lg font-thin text-customgray mb-6">{album.artist}</h3>
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-sm text-customgray">
+            {formatTime(currentTime)}
+          </span>
+          <div className="w-full mx-4 bg-zinc-200 rounded-full h-1">
+            <div
+              className="bg-customblack h-1 rounded-full transition-all duration-200"
+              style={{ width: `${(currentTime / duration) * 100}%` }}
+            />
           </div>
-          <div className="controls flex items-center justify-center gap-4 mt-4">
-            <button
-              onClick={() => console.log("Previous")}
-              className="prev-button"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-8 h-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 12H5m7-7l-7 7 7 7"
-                />
-              </svg>
-            </button>
-            <button onClick={handlePlayPause} className="play-pause-button">
-              <IoPlayOutline />
-              {/* {isPlaying ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="ionicon"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M112 111v290c0 17.44 17 28.52 31 20.16l247.9-148.37c12.12-7.25 12.12-26.33 0-33.58L143 90.84c-14-8.36-31 2.72-31 20.16z"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-miterlimit="10"
-                    stroke-width="32"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-8 h-8"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )} */}
-            </button>
-            <button onClick={() => console.log("Next")} className="next-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-8 h-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 12h14m-7-7l7 7-7 7"
-                />
-              </svg>
-            </button>
-          </div>
+          <span className="text-sm text-customgray">{formatTime(duration)}</span>
         </div>
+        <div className="controls flex items-center justify-center gap-4 mt-4">
+          <button
+            onClick={() => console.log("Previous")}
+            className="prev-button"
+          >
+            <IoPlayBackOutline className="w-8 h-8 text-customblack" />
+          </button>
+          <button onClick={handlePlayPause} className="play-pause-button">
+            <IoPlayOutline className="w-8 h-8 text-customblack" />
+          </button>
+          <button onClick={() => console.log("Next")} className="next-button">
+            <IoPlayForwardOutline className="w-8 h-8 text-customblack" />
+          </button>
+        </div>
+        {/* </div> */}
       </div>
     </div>
   );
