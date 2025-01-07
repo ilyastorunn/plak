@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ImageSlider from "../components/ImageSlider";
 import LoadingVinyl from "../components/LoadingVinyl";
 

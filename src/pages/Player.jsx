@@ -106,7 +106,6 @@ const Player = () => {
         <div className="w-full max-w-md">
           <div className="relative mb-8">
             <div className="aspect-square relative">
-              {/* <img src={album.src} alt={`${album.name} bt ${album.artist}`} /> */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div
                   className={`w-[95%] h-[95%] rounded-full bg-customgray shadow-lg transition-transform duration-1000
@@ -125,13 +124,12 @@ const Player = () => {
                 </div>
               </div>
             </div>
-          </div>{" "}
+          </div>
         </div>
-        {/* <div className="bg-white rounded-lg shadow-lg p-8"> //jjj */}
-        <h2 className="text-2xl text-customblack mb-2">
+        <h2 className="text-2xl font-Lora text-customblack mb-2">
           {album.albumName}
         </h2>
-        <h3 className="text-lg font-thin text-customgray mb-6">{album.artist}</h3>
+        <h3 className="text-lg font-thin font-Lora text-customgray mb-6">{album.artist}</h3>
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm text-customgray">
             {formatTime(currentTime)}
@@ -158,7 +156,6 @@ const Player = () => {
             <IoPlayForwardOutline className="w-8 h-8 text-customblack" />
           </button>
         </div>
-        {/* </div> */}
       </div>
     </div>
   );
