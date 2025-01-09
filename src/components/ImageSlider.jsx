@@ -61,6 +61,7 @@ const images = [
 const ImageSlider = () => {
   const [selectedIndex, setSelectedIndex] = useState(3);
   const [vinylVisible, setVinylVisible] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
 
   const moveToSelected = (direction) => {
@@ -117,6 +118,22 @@ const ImageSlider = () => {
     navigate(`/player/${index}`);
   };
 
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
+  const getBlurClass = (index) => {
+    return hoveredIndex === index ? "blur-sm" : "";
+  };
+
+  const getInfoClass = (index) => {
+    return hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+  }
+
   return (
     <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-8">
       <div className="relative h-[400px] w-full max-w-[1000px] flex justify-center items-center mx-auto">
@@ -131,6 +148,8 @@ const ImageSlider = () => {
                   className
                 )}`}
                 onClick={() => handleAlbumClick(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
               >
                 <div className="relative">
                   {isSelected && (
@@ -157,16 +176,19 @@ const ImageSlider = () => {
                   <img
                     src={img.src}
                     alt={`Album cover for ${img.albumName}`}
-                    className="w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5"
+                    className={`w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5 ${getBlurClass(index)}`}
                   />
                 </div>
                 {isSelected && (
-                  <div className="absolute -bottom-16 left-0 w-full text-center z-20">
+                  <div className={`absolute -bottom-16 left-0 w-full text-center z-20 transition-all duration-300 ${getInfoClass(index)}`}>
                     <p className="text-lg font-Lora font-medium mb-1 text-zinc-800">
                       {img.artist}
                     </p>
                     <p className="text-base font-Lora text-zinc-500 font-light">
                       {img.albumName}
+                    </p>
+                    <p className="text-sm font-Lora text-zinc-400 font-light">
+                      Rel. Date: 1997
                     </p>
                   </div>
                 )}
