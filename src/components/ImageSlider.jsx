@@ -5,56 +5,92 @@ const images = [
   {
     src: "../../public/pics/album1.jpg",
     artist: "The Chocolate Jam Co",
-    albumName: "The Speed of Earth",
+    albumName: "Mounds",
     sound: "../../public/sounds/album1.mp3",
+    relDate: "1979",
+    country: "USA 🇺🇸",
+    genre: "Jazz",
+    album: "The Spread Of The Future",
   },
   {
     src: "../../public/pics/album2.jpg",
     artist: "Mieko Hirota",
     albumName: "A Woman Am I",
     sound: "../../public/sounds/album2.mp3",
+    relDate: "1978",
+    country: "Japan 🇯🇵",
+    genre: "Jazz-Funk",
+    album: "Step Across",
   },
   {
     src: "../../public/pics/album3.jpg",
     artist: "Cappuccino",
     albumName: "I Can't Explain",
     sound: "../../public/sounds/album3.mp3",
+    relDate: "1976",
+    country: "Italy 🇮🇹",
+    genre: "Funk/Soul",
+    album: "Cappuccino",
   },
   {
     src: "../../public/pics/album4.jpg",
     artist: "Sai Hsai Mao",
     albumName: "Build A Hospital For Broken Hearts",
     sound: "../../public/sounds/album4.mp3",
+    relDate: "1976",
+    country: "Burma 🇲🇲",
+    genre: "Psych Jazz",
+    album: "unknown",
   },
   {
     src: "../../public/pics/album5.jpg",
     artist: "Ernest Ranglin",
-    albumName: "Surfin",
+    albumName: "Surfin'",
     sound: "../../public/sounds/album5.mp3",
+    relDate: "1996",
+    country: "USA 🇺🇸",
+    genre: "Reggae",
+    album: "Surfin",
   },
   {
     src: "../../public/pics/album6.jpg",
-    artist: "Valerie Cizmarova",
+    artist: "Valerie Čižmárová",
     albumName: "Padal Dest",
     sound: "../../public/sounds/album6.mp3",
+    relDate: "1974",
+    country: "Czechoslovakia 🇨🇿",
+    genre: "Funk/Soul",
+    album: "Valerie Čižmárová",
   },
   {
     src: "../../public/pics/album7.jpg",
     artist: "Hiromasa Suzuki",
     albumName: "High Flying",
     sound: "../../public/sounds/album7.mp3",
+    relDate: "1976",
+    country: "Japan 🇯🇵",
+    genre: "Electronic Jazz",
+    album: "High Flying",
   },
   {
     src: "../../public/pics/album8.jpg",
     artist: "Ансамбль Иверия",
     albumName: "Тема Аэта",
     sound: "../../public/sounds/album8.mp3",
+    relDate: "1987",
+    country: "USSR ☭",
+    genre: "Jazz",
+    album: "unknown",
   },
   {
     src: "../../public/pics/album9.jpg",
     artist: "Kimiko Kasai",
-    albumName: "Unfinished Life",
+    albumName: "やりかけの人生 (Unfinished Life)",
     sound: "../../public/sounds/album9.mp3",
+    relDate: "1977",
+    country: "Japan 🇯🇵",
+    genre: "Jazz",
+    album: "バイブレイション (Love Celebration)",
   },
 ];
 
@@ -127,12 +163,8 @@ const ImageSlider = () => {
   };
 
   const getBlurClass = (index) => {
-    return hoveredIndex === index ? "blur-sm" : "";
+    return index === selectedIndex && hoveredIndex === index ? "blur-xs" : "";
   };
-
-  const getInfoClass = (index) => {
-    return hoveredIndex === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-  }
 
   return (
     <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-8">
@@ -173,22 +205,45 @@ const ImageSlider = () => {
                       </div>
                     </div>
                   )}
-                  <img
-                    src={img.src}
-                    alt={`Album cover for ${img.albumName}`}
-                    className={`w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5 ${getBlurClass(index)}`}
-                  />
+                  <div className="relative">
+                    <img
+                      src={img.src}
+                      alt={`Album cover for ${img.albumName}`}
+                      className={`w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5 ${getBlurClass(
+                        index
+                      )}`}
+                    />
+                    {isSelected && (
+                      <div className="pt-5 pl-4 absolute inset-0 flex bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 z-20">
+                        <div className="text-customWhite text-base font-Lora">
+                          <div className="flex">
+                            <p className="font-medium mb-2">Album:</p>
+                            <p>{img.album}</p>
+                          </div>
+                          <div className="flex">
+                            <p className="font-medium mb-2">Release Date:</p>
+                            <p>{img.relDate}</p>
+                          </div>
+                          <div className="flex">
+                            <p className="font-medium mb-2">Country:</p>
+                            <p>{img.country}</p>
+                          </div>
+                          <div className="flex">
+                            <p className="font-medium">Genre:</p>
+                            <p> {img.genre}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 {isSelected && (
-                  <div className={`absolute -bottom-16 left-0 w-full text-center z-20 transition-all duration-300 ${getInfoClass(index)}`}>
+                  <div className="absolute -bottom-16 left-0 w-full text-center z-20 transition-all duration-300">
                     <p className="text-lg font-Lora font-medium mb-1 text-zinc-800">
                       {img.artist}
                     </p>
                     <p className="text-base font-Lora text-zinc-500 font-light">
                       {img.albumName}
-                    </p>
-                    <p className="text-sm font-Lora text-zinc-400 font-light">
-                      Rel. Date: 1997
                     </p>
                   </div>
                 )}

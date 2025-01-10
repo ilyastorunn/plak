@@ -9,8 +9,11 @@ export default {
         customblack: "#06080F",
         customorange: "#D7521D",
       },
+      blur: {
+        xs: "2px",
+      },
       boxShadow: {
-        'top': '0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05)',
+        top: "0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05)",
       },
       fontFamily: {
         Magtis: ["Magtis", "sans-serif"],
@@ -19,19 +22,16 @@ export default {
         Lora: ["Lora", "serif"],
       },
       animation: {
-        'spin': 'spin 2s linear infinite',
-        'spin-slow': 'spin 10s linear infinite',
+        spin: "spin 2s linear infinite",
+        "spin-slow": "spin 10s linear infinite",
       },
       keyframes: {
-        'spin-slow': {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        }
-      }
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@nextui-org/react"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("@nextui-org/react")],
 };
