@@ -6,16 +6,14 @@ import VolumeSlider from "./components/VolumeSlider";
 
 function App() {
   return (
-    <VolumeSlider />
-      //<BrowserRouter>
-        //<Routes>
-          //<Route path="/" element={<LandingPage />} />
-          //<Route path="/albums" element={<Albums />} />
-          //<Route path="/player/:id" element={<Player />} />
-          //{/* <Route path="/player" element={<Player />} /> */}
-        //</Routes>
-      //</BrowserRouter>
-   
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/albums" element={<Albums />} />
+        <Route path="/player/:id" element={<Player />} />
+        {/* <Route path="/player" element={<Player />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
