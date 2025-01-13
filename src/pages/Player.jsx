@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router";
 import { IoReturnDownBackOutline } from "react-icons/io5";
 import LoadingVinyl from "../components/LoadingVinyl";
 import images from "../data/images";
-
-
+import Spotify from "../../public/pics/Spotify-Logo.png";
+import Apple from "../../public/pics/apple-logo.png";
 
 const Player = () => {
   const { id } = useParams();
@@ -121,12 +121,15 @@ const Player = () => {
             <span>Back to Albums</span>
             <IoReturnDownBackOutline className="w-6 h-6 absolute bottom-0 right-0" />
           </Link>
-          <div className="bg-[#FAF9F6] rounded-lg shadow-lg px-8 pb-8 pt-4 w-[450px] h-[528px]">
+          {/* <div className="bg-[#FAF9F6] rounded-lg shadow-lg px-8 pb-8 pt-4 w-[450px] h-[554px]"> */}
+          <div>
             <div className="flex flex-row justify-center w-full">
               <div className="relative mb-8">
                 <div className="aspect-square relative w-64 h-64">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div
+
+
+                    {/* <div
                       className={`w-full h-full rounded-full bg-customgray shadow-lg transition-transform duration-1000
                    ${isPlaying ? "animate-spin-slow" : "rotate-0"}`}
                     >
@@ -140,7 +143,28 @@ const Player = () => {
                       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-customblack">
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-customgray" />
                       </div>
+                    </div> */}
+
+
+
+                    
+                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div
+                      className="w-full h-full shadow-lg"
+                    >
+                      <div className="absolute inset-0 rounded-full overflow-hidden opacity-100">
+                        <img
+                          src={album.src}
+                          alt="Vinyl texture"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
+                    </div>
+
+
+
+
                   </div>
                 </div>
               </div>
@@ -227,6 +251,11 @@ const Player = () => {
                 onChange={handleVolumeChange}
                 className=" accent-customorange w-[192px]"
               />
+              <div className="flex items-center gap-4">
+                <p className="font-Lora text-customgray text-base">Listen on:</p>
+                <a href="#"><img src={Spotify} alt="Spotify Logo" className="w-4 h-4" /></a>
+                <a href="#"><img src={Apple} alt="Apple Music Logo" className="w-4 h-4" /></a>
+              </div>
             </div>
           </div>
           <audio ref={audioRef} src={album.sound} />
