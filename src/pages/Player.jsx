@@ -91,6 +91,9 @@ const Player = () => {
 
   const handleVolumeChange = (e) => {
     setVolume(e.target.value);
+    if (audioRef.current) {
+      audioRef.current.volume = e.target.value / 100;
+    }
   };
 
   const formatTime = (time) => {
@@ -201,7 +204,7 @@ const Player = () => {
                   </svg>
                 </button>
               </div>
-              <VolumeSlider />
+              <VolumeSlider volume={volume} handleVolumeChange={handleVolumeChange} />
               <div className="flex items-center justify-between gap-4">
                 <span>Listen on:</span>
                 <img src={Spotify} alt="Spotify Logo" className="w-6 h-6" />
