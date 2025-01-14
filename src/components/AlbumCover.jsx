@@ -1,35 +1,32 @@
 import cover from "../../public/pics/album1.jpg";
 
 const AlbumCover = () => {
-    return (
-        <div className="flex justify-center items-center min-h-screen bg-[#f7f4f2]">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-80">
-        {/* Albüm Kapağı */}
-        <div className="relative w-full h-48 overflow-hidden rounded-lg">
-          <img
-            src={cover}
-            alt="Album Cover"
-            className="w-full h-full object-cover"
-          />
-
-          <div
-            className="absolute top-0 right-0 w-28 h-28 bg-white rounded-full -translate-x-1/3 -translate-y-1/3"
-            style={{ clipPath: "ellipse(70% 50% at 50% 50%)" }}
-          >
-            <img
-              src={cover}
-              alt="Record Effect"
-              className="w-full h-full object-cover"
-            />
+  return (
+      <div className="relative h-[300px] w-full max-w-[1000px] flex justify-center items-center mx-auto mt-4">
+        <div className="relative w-full flex justify-center items-center">
+          <div className="absolute transition-all duration-500 cursor-pointer z-30 translate-x-0 translate-y-0 scale-100 flex items-center">
+            <div className="relative z-20">
+              <img
+                src={cover}
+                alt="Album"
+                className="w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5"
+              />
+            </div>
+            <div className="relative z-10 -ml-[100px]">
+              <div className="vinyl w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out opacity-100 scale-100">
+                <div className="w-full h-full relative">
+                  <img
+                    src={cover}
+                    alt="vinyl cover"
+                    className="w-full h-full object-cover opacity-90"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="mt-4 text-center">
-          <h2 className="text-xl font-semibold text-gray-800">I Can't Explain</h2>
-          <p className="text-sm text-gray-500">Cappucino</p>
-        </div>
       </div>
-    </div>
-    )
-}
+  );
+};
 
 export default AlbumCover;
