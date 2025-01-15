@@ -14,8 +14,7 @@ export default function LandingPage() {
           songs. Nostalgic vibes - lose yourself to music.
         </span>
         <Link to="/albums" className="flex items-center gap-2 cta">
-          <ButtonWithStyles text="EXPLORE NOW!" />
-          <MdArrowRightAlt className="icon pl-1 inline-flex items-center text-[#4B5E6C] group-hover:text-customorange" />
+          <ButtonWithStyles text="EXPLORE NOW!" Icon={MdArrowRightAlt} />
         </Link>
       </div>
     </div>

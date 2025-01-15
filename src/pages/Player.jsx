@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router";
-import { IoReturnDownBackOutline } from "react-icons/io5";
 import LoadingVinyl from "../components/LoadingVinyl";
 import images from "../data/images";
 import Spotify from "../../public/pics/Spotify-Logo.png";
 import Apple from "../../public/pics/apple-logo.png";
 import VolumeSlider from "../components/VolumeSlider";
 import ButtonWithStyles from "../components/Button";
+import { TbArrowBack } from "react-icons/tb";
 
 const Player = () => {
   const { id } = useParams();
@@ -16,24 +16,7 @@ const Player = () => {
   const [volume, setVolume] = useState(50);
   const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef(null);
-
   const album = images[id];
-
-  /* useEffect(() => {
-    let interval;
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentTime((prevTime) => {
-          if (prevTime >= duration) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prevTime + 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isPlaying, duration]); */
 
   useEffect(() => {
     setTimeout(() => {
@@ -52,8 +35,6 @@ const Player = () => {
       }
     }
   }, [isPlaying, volume]);
-
-  // const togglePlay = () => setIsPlaying(!isPlaying);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -123,11 +104,9 @@ const Player = () => {
             to="/albums"
             className="absolute top-8 left-8 text-customblack hover:text-customgray transition-colors"
           >
-            {/* <span>Back to Albums</span>
-            <IoReturnDownBackOutline className="absolute bottom-0 right-0" /> */}
-            <ButtonWithStyles text="Back to Albums" />
+            <ButtonWithStyles text="Back to Albums" Icon={TbArrowBack} />
           </Link>
-          <div className="bg-[#FAF9F6] rounded-lg shadow-lg pt-4 w-[450px] h-[660px]">
+          <div className="bg-[#FAF9F6] rounded-lg shadow-lg pt-4 w-[450px] h-[660px] relative">
             {/* Album Cover */}
 
             <div className="px-8 relative h-[300px] w-full max-w-[1000px] flex justify-center items-center mx-auto mt-4">
@@ -244,7 +223,7 @@ const Player = () => {
                 <img src={Apple} alt="Apple Music Logo" className="w-6 h-6" />
               </div>
             </div>
-            <span className="text-[8px]">*Music powered by Spotify</span>
+            <span className="absolute bottom-2 left-2 text-[8px]">*Music powered by Spotify</span>
           </div>
           <audio ref={audioRef} src={album.sound} />
         </div>
