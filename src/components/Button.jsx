@@ -1,12 +1,12 @@
 import React from "react";
 import { MdArrowRightAlt } from "react-icons/md";
 
-const Button = () => {
+const Button = ({ text }) => {
   return (
     <button className="cta border-none bg-transparent cursor-pointer flex items-center gap-2 p-0">
-      <span className="hover-underline-animation relative text-[#4B5E6C] hover:text-customorange pb-1 text-base tracking-[2px] uppercase font-medium font-Inter flex items-center group">
-        EXPLORE NOW!
-        <MdArrowRightAlt className="icon pl-1 inline-flex items-center text-[#4B5E6C] group-hover:text-customorange" />
+      <span className="hover-underline-animation relative text-[#4B5E6C] hover:text-customorange pb-1 text-base tracking-[2px] font-medium font-Inter flex items-center group">
+        {text}
+        {/* <MdArrowRightAlt className="icon pl-1 inline-flex items-center text-[#4B5E6C] group-hover:text-customorange" /> */}
       </span>
     </button>
   );
@@ -37,10 +37,10 @@ const styles = `
 
 const StyleSheet = () => <style>{styles}</style>;
 
-const ButtonWithStyles = () => (
+const ButtonWithStyles = ({ text }) => (
   <>
     <StyleSheet />
-    <Button />
+    <Button text={text} />
   </>
 );
 

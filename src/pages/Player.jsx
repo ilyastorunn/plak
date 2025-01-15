@@ -5,8 +5,8 @@ import LoadingVinyl from "../components/LoadingVinyl";
 import images from "../data/images";
 import Spotify from "../../public/pics/Spotify-Logo.png";
 import Apple from "../../public/pics/apple-logo.png";
-import AlbumCover from "../components/AlbumCover";
 import VolumeSlider from "../components/VolumeSlider";
+import ButtonWithStyles from "../components/Button";
 
 const Player = () => {
   const { id } = useParams();
@@ -123,12 +123,42 @@ const Player = () => {
             to="/albums"
             className="absolute top-8 left-8 text-customblack hover:text-customgray transition-colors"
           >
-            <span>Back to Albums</span>
-            <IoReturnDownBackOutline className="w-6 h-6 absolute bottom-0 right-0" />
+            {/* <span>Back to Albums</span>
+            <IoReturnDownBackOutline className="absolute bottom-0 right-0" /> */}
+            <ButtonWithStyles text="Back to Albums" />
           </Link>
-          <div className="bg-[#FAF9F6] rounded-lg shadow-lg px-8 pb-8 pt-4 w-[450px] h-[640px]">
-            <AlbumCover />
-            <div className="mt-8">
+          <div className="bg-[#FAF9F6] rounded-lg shadow-lg pt-4 w-[450px] h-[660px]">
+            {/* Album Cover */}
+
+            <div className="px-8 relative h-[300px] w-full max-w-[1000px] flex justify-center items-center mx-auto mt-4">
+              <div className="relative w-full flex justify-center items-center">
+                <div className="absolute transition-all duration-500 cursor-pointer z-30 translate-x-0 translate-y-0 scale-100 flex items-center">
+                  <div className="relative z-20">
+                    <img
+                      src={album.src}
+                      alt="Album"
+                      className="w-[300px] h-[300px] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5"
+                    />
+                  </div>
+                  <div className="relative z-10 -ml-[100px]">
+                    <div className="vinyl w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out opacity-100 scale-100">
+                      <div className="w-full h-full relative">
+                        <img
+                          src={album.src}
+                          alt="vinyl cover"
+                          className={`w-full h-full object-cover opacity-90
+                    ${isPlaying ? "animate-spin-slow" : "rotate-0"}
+                    `}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* Album Cover End */}
+
+            <div className="mt-8 px-8">
               <h2 className="text-2xl font-Lora text-customblack mb-2 truncate">
                 {album.albumName}
               </h2>
@@ -136,7 +166,7 @@ const Player = () => {
                 {album.artist}
               </h3>
             </div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 px-8">
               <span className="text-sm text-customgray">
                 {formatTime(currentTime)}
               </span>
@@ -153,7 +183,7 @@ const Player = () => {
                 {formatTime(duration)}
               </span>
             </div>
-            <div className="controls flex flex-col items-center justify-center gap-4 mt-4">
+            <div className="controls flex flex-col items-center justify-center gap-4 mt-4 px-8">
               <div className="flex items-center justify-center gap-4">
                 <button onClick={handleRewind} className="prev-button">
                   <svg
@@ -162,7 +192,7 @@ const Player = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-8 h-8 stroke-1 hover:fill-customorange"
+                    className="w-8 h-8 stroke-1 hover:fill-customorange transition-colors duration-500"
                   >
                     <path
                       strokeLinecap="round"
@@ -178,7 +208,7 @@ const Player = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-8 h-8 stroke-1 hover:fill-customorange"
+                    className="w-8 h-8 stroke-1 hover:fill-customorange transition-colors duration-500"
                   >
                     <path
                       strokeLinecap="round"
@@ -194,7 +224,7 @@ const Player = () => {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-8 h-8 stroke-1 hover:fill-customorange duration-500 transition-colors"
+                    className="w-8 h-8 stroke-1 hover:fill-customorange transition-colors duration-500"
                   >
                     <path
                       strokeLinecap="round"
@@ -204,14 +234,17 @@ const Player = () => {
                   </svg>
                 </button>
               </div>
-              <VolumeSlider volume={volume} handleVolumeChange={handleVolumeChange} />
+              <VolumeSlider
+                volume={volume}
+                handleVolumeChange={handleVolumeChange}
+              />
               <div className="flex items-center justify-between gap-4">
                 <span>Listen on:</span>
                 <img src={Spotify} alt="Spotify Logo" className="w-6 h-6" />
                 <img src={Apple} alt="Apple Music Logo" className="w-6 h-6" />
               </div>
             </div>
-            <span className="ml-2">Music powered by Spotify</span>
+            <span className="text-[8px]">*Music powered by Spotify</span>
           </div>
           <audio ref={audioRef} src={album.sound} />
         </div>

@@ -1,5 +1,6 @@
 import ButtonWithStyles from "../components/Button";
 import { Link } from "react-router";
+import { MdArrowRightAlt } from "react-icons/md";
 
 export default function LandingPage() {
   return (
@@ -12,8 +13,9 @@ export default function LandingPage() {
           A place to rediscover rare, forgotten and timeless <br />
           songs. Nostalgic vibes - lose yourself to music.
         </span>
-        <Link to="/albums">
-          <ButtonWithStyles />
+        <Link to="/albums" className="flex items-center gap-2 cta">
+          <ButtonWithStyles text="EXPLORE NOW!" />
+          <MdArrowRightAlt className="icon pl-1 inline-flex items-center text-[#4B5E6C] group-hover:text-customorange" />
         </Link>
       </div>
     </div>
