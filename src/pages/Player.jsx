@@ -164,14 +164,17 @@ const Player = () => {
             </div>
             <div className="controls flex flex-col items-center justify-center gap-4 mt-4 px-8">
               <div className="flex items-center justify-center gap-4">
-                <button onClick={handleRewind} className="prev-button">
+                <button
+                  onClick={handleRewind}
+                  className="prev-button text-customblack"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-8 h-8 stroke-1 hover:fill-customorange transition-colors duration-500"
+                    className="hover:fill-customorange w-8 h-8 stroke-1"
                   >
                     <path
                       strokeLinecap="round"
@@ -180,7 +183,10 @@ const Player = () => {
                     />
                   </svg>
                 </button>
-                <button onClick={handlePlayPause} className="play-pause-button">
+                <button
+                  onClick={handlePlayPause}
+                  className="play-pause-button text-customblack"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -196,7 +202,10 @@ const Player = () => {
                     />
                   </svg>
                 </button>
-                <button onClick={handleForward} className="next-button">
+                <button
+                  onClick={handleForward}
+                  className="next-button text-customblack"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -218,12 +227,14 @@ const Player = () => {
                 handleVolumeChange={handleVolumeChange}
               />
               <div className="flex items-center justify-between gap-4">
-                <span>Listen on:</span>
+                <span className="text-customblack">Listen on:</span>
                 <img src={Spotify} alt="Spotify Logo" className="w-6 h-6" />
                 <img src={Apple} alt="Apple Music Logo" className="w-6 h-6" />
               </div>
             </div>
-            <span className="absolute bottom-2 left-2 text-[8px]">*Music powered by Spotify</span>
+            <span className="absolute bottom-2 left-2 text-[8px] text-customblack opacity-80">
+              *Music powered by Spotify
+            </span>
           </div>
           <audio ref={audioRef} src={album.sound} />
         </div>
