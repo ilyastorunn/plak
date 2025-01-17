@@ -7,6 +7,7 @@ import Apple from "../../public/pics/apple-logo.png";
 import VolumeSlider from "../components/VolumeSlider";
 import ButtonWithStyles from "../components/Button";
 import { TbArrowBack } from "react-icons/tb";
+import Footer from "../components/Footer";
 
 const Player = () => {
   const { id } = useParams();
@@ -239,6 +240,7 @@ const Player = () => {
           <audio ref={audioRef} src={album.sound} />
         </div>
       )}
+      <Footer />
     </>
   );
 };
