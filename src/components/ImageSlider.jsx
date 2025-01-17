@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import images from "../data/images";
 import Footer from "./Footer";
 
@@ -77,7 +77,15 @@ const ImageSlider = () => {
 
   return (
     <>
-      <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden p-8">
+      <div className="bg-customWhite grid items-start pl-8 pt-8">
+        <Link to="/" className="inline-block font-Magtis text-5xl font-extrabold text-customgray hover:text-customorange transition-colors duration-500">
+          "plak"
+        </Link>
+        <span className="inline pl-5 pt-1 font-Inter italic font-bold text-customgray">
+          pick a song
+        </span>
+      </div>
+      <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-8 pb-8">
         <div className="relative h-[400px] w-full max-w-[1000px] flex justify-center items-center mx-auto">
           <div className="relative w-full flex justify-center items-center">
             {images.map((img, index) => {

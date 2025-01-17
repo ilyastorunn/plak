@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import Albums from "./pages/Albums";
 import Player from "./pages/Player";
 import VolumeSlider from "./components/VolumeSlider";
+import PlakButton from "./components/PlakButton";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/albums" element={<Albums />} />
         <Route path="/player/:id" element={<Player />} />
         <Route path="/slider" element={<VolumeSlider />} />
+        <Route path="/plak" element={<PlakButton />} />
         {/* <Route path="/player" element={<Player />} /> */}
       </Routes>
     </BrowserRouter>
