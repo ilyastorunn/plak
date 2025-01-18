@@ -4,16 +4,16 @@ import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 export default function Footer() {
   return (
     <>
-      <div className="bg-customWhite flex justify-between items-center pb-2 px-8">
+      <div className="bg-customWhite flex justify-between items-center px-8 py-2 fixed bottom-0 left-0 w-full z-50 shadow-md">
         <div className="flex items-center">
           <span className="text-[12px] text-customgray font-Inter">
-            Created by
+            Created by{" "}
             <a
               href="https://ilyas-dev.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ButtonWithStyles text={"Ilyas Torun"} className="" />
+              <ButtonWithStyles text={"Ilyas Torun"} />
             </a>
           </span>
         </div>

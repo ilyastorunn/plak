@@ -101,13 +101,18 @@ const Player = () => {
         <LoadingVinyl />
       ) : (
         <div className="min-h-screen flex flex-col items-center justify-center bg-customWhite p-8">
-          <Link
-            to="/albums"
-            className="absolute top-8 left-8 text-customblack hover:text-customgray transition-colors"
-          >
-            <ButtonWithStyles text="Back to Albums" Icon={TbArrowBack} />
-          </Link>
-          <div className="bg-[#FAF9F6] rounded-lg shadow-lg pt-4 w-[450px] h-[660px] relative">
+          <div className="flex flex-col absolute top-4 left-4 z-50 pl-2 pt-2">
+            <span className="font-Magtis text-5xl font-extrabold text-customgray">
+              "plak"
+            </span>
+            <Link
+              to="/albums"
+              className="font-Magtis font-bold text-customgray hover:text-customorange transition-colors duration-500 mt-2 pl-5"
+            >
+              back to albums
+            </Link>
+          </div>
+          <div className="bg-customborder rounded-lg pt-4 w-[450px] h-[660px] relative">
             {/* Album Cover */}
 
             <div className="px-8 relative h-[300px] w-full max-w-[1000px] flex justify-center items-center mx-auto mt-4">
@@ -228,9 +233,13 @@ const Player = () => {
                 handleVolumeChange={handleVolumeChange}
               />
               <div className="flex items-center justify-between gap-4">
-                <span className="text-customblack">Listen on:</span>
-                <img src={Spotify} alt="Spotify Logo" className="w-6 h-6" />
-                <img src={Apple} alt="Apple Music Logo" className="w-6 h-6" />
+                <span className="text-customgray">Listen on:</span>
+                <a href="">
+                  <img src={Spotify} alt="Spotify Logo" className="w-6 h-6" />
+                </a>
+                <a href="">
+                  <img src={Apple} alt="Apple Music Logo" className="w-6 h-6" />
+                </a>
               </div>
             </div>
             <span className="absolute bottom-2 left-2 text-[8px] text-customblack opacity-80">

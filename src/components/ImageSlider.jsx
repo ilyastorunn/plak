@@ -77,15 +77,19 @@ const ImageSlider = () => {
 
   return (
     <>
-      <div className="bg-customWhite grid items-start pl-8 pt-8">
-        <Link to="/" className="inline-block font-Magtis text-5xl font-extrabold text-customgray hover:text-customorange transition-colors duration-500">
-          "plak"
-        </Link>
-        <span className="inline pl-5 pt-1 font-Inter italic font-bold text-customgray">
-          pick a song
-        </span>
-      </div>
       <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-8 pb-8">
+        <div className="absolute top-4 left-4 z-50 pl-2 pt-2">
+          <Link
+            to="/"
+            className="font-Magtis text-5xl font-extrabold text-customgray hover:text-customorange transition-colors duration-500"
+          >
+            "plak"
+          </Link>
+          <p className="font-Magtis font-bold text-customgray mt-2 pl-5">
+            pick a song
+          </p>
+        </div>
+
         <div className="relative h-[400px] w-full max-w-[1000px] flex justify-center items-center mx-auto">
           <div className="relative w-full flex justify-center items-center">
             {images.map((img, index) => {
@@ -105,11 +109,11 @@ const ImageSlider = () => {
                     {isSelected && (
                       <div
                         className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out
-                        ${
-                          vinylVisible
-                            ? "opacity-100 scale-100 -translate-y-[45%]"
-                            : "opacity-0 scale-80 translate-y-0"
-                        }`}
+                  ${
+                    vinylVisible
+                      ? "opacity-100 scale-100 -translate-y-[45%]"
+                      : "opacity-0 scale-80 translate-y-0"
+                  }`}
                       >
                         <div className="w-full h-full relative animate-spin-slow">
                           <img
@@ -172,18 +176,18 @@ const ImageSlider = () => {
         </div>
         <div className="flex items-center justify-center bottom-10 pt-4">
           <button
-            className="mt-4 px-4 py-2 bg-customblack text-customWhite rounded-full text-sm font-Inter hover:bg-customorange transition-colors duration-500"
+            className="mt-4 px-4 py-2 text-customWhite rounded-lg bg-customgray text-md font-Inter hover:bg-customorange transition-colors duration-500"
             onClick={(e) => {
               e.stopPropagation();
               navigate(`/player/${selectedIndex}`);
             }}
           >
-            Play Album
+            Listen
           </button>
         </div>
-        <div className="absolute w-full top-1/2 -translate-y-1/2 flex justify-between box-border pointer-events-none z-40 max-w-[1200px] px-8">
+        <div className="absolute w-full flex justify-between items-center z-40 max-w-[1000px] mx-auto">
           <button
-            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 pointer-events-auto"
+            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 -translate-x-16"
             onClick={() => moveToSelected("prev")}
             aria-label="Previous image"
           >
@@ -202,7 +206,7 @@ const ImageSlider = () => {
             </svg>
           </button>
           <button
-            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 pointer-events-auto"
+            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 translate-x-16"
             onClick={() => moveToSelected("next")}
             aria-label="Next image"
           >
