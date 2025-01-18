@@ -87,9 +87,11 @@ const Player = () => {
   const handleTimeBarClick = (e) => {
     const audio = audioRef.current;
     if (audio) {
-      const rect = e.target.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;
-      const newTime = (offsetX / rect.width) * audio.duration;
+      const rect = e.currentTarger.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickRatio = clickX / rect.width;
+
+      const newTime = clickRatio * audio.duration;
       audio.currentTime = newTime;
       setCurrentTime(newTime);
     }
@@ -156,11 +158,11 @@ const Player = () => {
                 {formatTime(currentTime)}
               </span>
               <div
-                className="w-full mx-4 bg-zinc-200 rounded-full h-1 cursor-pointer"
+                className="w-full h-1 bg-customWhite rounded-full cursor-pointer relative"
                 onClick={handleTimeBarClick}
               >
                 <div
-                  className="bg-customblack h-1 rounded-full transition-all duration-200"
+                  className="h-full bg-customgray opacity-50 rounded-full"
                   style={{ width: `${(currentTime / duration) * 100}%` }}
                 />
               </div>
