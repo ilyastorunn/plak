@@ -59,8 +59,15 @@ const ImageSlider = () => {
   };
 
   const handleAlbumClick = (index) => {
-    setSelectedIndex(index);
-    navigate(`/player/${index}`);
+    if (index === selectedIndex) {
+      navigate(`/player/${index}`);
+    } else {
+      setVinylVisible(false);
+      setTimeout(() => {
+        setSelectedIndex(index);
+        setVinylVisible(true);
+      }, 500);
+    }
   };
 
   const handleMouseEnter = (index) => {
@@ -89,7 +96,6 @@ const ImageSlider = () => {
             pick a song
           </p>
         </div>
-
         <div className="relative h-[400px] w-full max-w-[1000px] flex justify-center items-center mx-auto">
           <div className="relative w-full flex justify-center items-center">
             {images.map((img, index) => {
@@ -109,11 +115,11 @@ const ImageSlider = () => {
                     {isSelected && (
                       <div
                         className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out
-                  ${
-                    vinylVisible
-                      ? "opacity-100 scale-100 -translate-y-[45%]"
-                      : "opacity-0 scale-80 translate-y-0"
-                  }`}
+                      ${
+                        vinylVisible
+                          ? "opacity-100 scale-100 -translate-y-[45%] shadow-lg"
+                          : "opacity-0 scale-80 translate-y-0"
+                      }`}
                       >
                         <div className="w-full h-full relative animate-spin-slow">
                           <img
@@ -136,24 +142,21 @@ const ImageSlider = () => {
                         )}`}
                       />
                       {isSelected && (
-                        <div className="pt-5 pl-4 absolute inset-0 flex bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300 z-20">
-                          <div className="text-customWhite text-base font-Lora">
-                            <div className="flex">
-                              <p className="font-medium mb-2">Album:</p>
-                              <p>{img.album}</p>
-                            </div>
-                            <div className="flex">
-                              <p className="font-medium mb-2">Release Date:</p>
-                              <p>{img.relDate}</p>
-                            </div>
-                            <div className="flex">
-                              <p className="font-medium mb-2">Country:</p>
-                              <p>{img.country}</p>
-                            </div>
-                            <div className="flex">
-                              <p className="font-medium">Genre:</p>
-                              <p> {img.genre}</p>
-                            </div>
+                        <div className="pt-5 px-6 absolute inset-0 flex flex-col bg-customgray/50 rounded-lg shadow-md opacity-0 hover:opacity-100 transition-opacity duration-300 z-20">
+                          <div className="text-customWhite text-sm font-Lora space-y-2">
+                            <p className="font-semibold">Album:&nbsp;</p>
+                            <span className="font-normal">
+                              {img.album}&nbsp;
+                            </span>
+                            <span className="font-normal">
+                              ({img.albumForeignLang})
+                            </span>
+                            <p className="font-semibold">Release Date:&nbsp;</p>
+                            <span className="font-normal">{img.relDate}</span>
+                            <p className="font-semibold">Country:&nbsp;</p>
+                            <span className="font-normal">{img.country}</span>
+                            <p className="font-semibold">Genre:&nbsp;</p>
+                            <span className="font-normal">{img.genre}</span>
                           </div>
                         </div>
                       )}
@@ -164,7 +167,7 @@ const ImageSlider = () => {
                       <p className="text-lg font-Lora font-medium mb-1 text-zinc-800">
                         {img.artist}
                       </p>
-                      <p className="text-base font-Lora text-zinc-500 font-light">
+                      <p className="text-base font-Lora text-zinc-500 font-light space-y-1">
                         {img.albumName}
                       </p>
                     </div>
@@ -174,9 +177,9 @@ const ImageSlider = () => {
             })}
           </div>
         </div>
-        <div className="flex items-center justify-center bottom-10 pt-4">
+        <div className="flex items-center justify-center bottom-0 mt-10">
           <button
-            className="mt-4 px-4 py-2 text-customWhite rounded-lg bg-customgray text-md font-Inter hover:bg-customorange transition-colors duration-500"
+            className="px-5 py-2 text-customWhite rounded-lg bg-gradient-to-r from-customorange to-customgray text-md font-Inter hover:translate-y-[-2px] transition-transform duration-300 shadow-md"
             onClick={(e) => {
               e.stopPropagation();
               navigate(`/player/${selectedIndex}`);
@@ -185,7 +188,7 @@ const ImageSlider = () => {
             Listen
           </button>
         </div>
-        <div className="absolute w-full flex justify-between items-center z-40 max-w-[1000px] mx-auto">
+        <div className="absolute w-full flex justify-between items-center max-w-[1000px] mx-auto">
           <button
             className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 -translate-x-16"
             onClick={() => moveToSelected("prev")}
