@@ -107,9 +107,9 @@ const ImageSlider = () => {
                   className={`absolute transition-all duration-500 cursor-pointer ${getStyles(
                     className
                   )}`}
-                  onClick={() => handleAlbumClick(index)}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
+                  onClick={() => handleAlbumClick(index)}
                 >
                   <div className="relative">
                     {isSelected && (
@@ -147,9 +147,6 @@ const ImageSlider = () => {
                             <p className="font-semibold">Album:&nbsp;</p>
                             <span className="font-normal">
                               {img.album}&nbsp;
-                            </span>
-                            <span className="font-normal">
-                              ({img.albumForeignLang})
                             </span>
                             <p className="font-semibold">Release Date:&nbsp;</p>
                             <span className="font-normal">{img.relDate}</span>

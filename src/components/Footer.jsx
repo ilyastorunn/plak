@@ -5,17 +5,19 @@ export default function Footer() {
   return (
     <>
       <div className="bg-customWhite flex justify-between items-center px-8 py-2 fixed bottom-0 left-0 w-full z-50 shadow-md">
-        <div className="flex items-center">
+        <div className="flex flex-col items-start">
           <span className="text-[12px] text-customgray font-Inter">
             Created by{" "}
-            <a
-              href="https://ilyas-dev.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ButtonWithStyles text={"Ilyas Torun"} />
-            </a>
           </span>
+          <a
+            href="https://ilyas-dev.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-customgray hover:text-customorange transition-colors duration-300 font-Magtis text-[16px] mt-1"
+          >
+              ilyas torun
+            {/* <ButtonWithStyles text={"Ilyas Torun"} /> */}
+          </a>
         </div>
         <div className="flex items-center gap-2">
           <a href="https://github.com/ilyastorunn" target="_blank">

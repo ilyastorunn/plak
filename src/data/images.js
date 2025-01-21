@@ -87,8 +87,7 @@ const images = [
     relDate: "1977",
     country: "Japan 🇯🇵",
     genre: "Jazz",
-    album: "バイブレイション",
-    albumForeignLang: "Love Celebration",
+    album: "バイブレイション (Love Celebration)",
   },
 ];
 
