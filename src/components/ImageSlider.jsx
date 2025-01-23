@@ -4,11 +4,11 @@ import images from "../data/images";
 import Footer from "./Footer";
 
 const ImageSlider = () => {
-  const [selectedIndex, setSelectedIndex] = useState(2); // Başlangıçta merkezi albüm
+  const [selectedIndex, setSelectedIndex] = useState(3);
   const [vinylVisible, setVinylVisible] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
 
-  // Sağa veya sola kaydırma fonksiyonu
   const moveToSelected = (direction) => {
     setVinylVisible(false);
     setTimeout(() => {
@@ -21,83 +21,183 @@ const ImageSlider = () => {
           prevIndex === 0 ? images.length - 1 : prevIndex - 1
         );
       }
-      setVinylVisible(true);
+      setTimeout(() => setVinylVisible(true), 100);
     }, 500);
   };
 
-  // Albümlerin pozisyon ve boyut sınıflarını belirler
-  const getStyles = (index) => {
+  useEffect(() => {
+    setVinylVisible(true);
+  }, []);
+
+  const getClassName = (index) => {
     const total = images.length;
     const difference = (index - selectedIndex + total) % total;
 
     if (difference === 0) return "selected";
     if (difference === 1) return "next";
-    if (difference === total - 1) return "prev";
     if (difference === 2) return "nextRightSecond";
+    if (difference === total - 1) return "prev";
     if (difference === total - 2) return "prevLeftSecond";
-    return "hidden";
+    return difference < total / 2 ? "hideRight" : "hideLeft";
+  };
+
+  const getStyles = (className) => {
+    switch (className) {
+      case "selected":
+        return "z-30 translate-x-0 translate-y-0 scale-100 hover:scale-[1.02] transition-transform duration-300";
+      case "next":
+        return "z-20 translate-x-[15rem] translate-y-[-0.625rem] scale-[0.65] hover:scale-[0.67] transition-transform duration-300";
+      case "nextRightSecond":
+        return "z-10 translate-x-[23.75rem] translate-y-[-1.25rem] scale-[0.5] hover:scale-[0.52] transition-transform duration-300";
+      case "prev":
+        return "z-20 translate-x-[-15rem] translate-y-[-0.625rem] scale-[0.65] hover:scale-[0.67] transition-transform duration-300";
+      case "prevLeftSecond":
+        return "z-10 translate-x-[-23.75rem] translate-y-[-1.25rem] scale-[0.5] hover:scale-[0.52] transition-transform duration-300";
+      default:
+        return "opacity-0 translate-x-0 scale-0";
+    }
+  };
+
+  const handleAlbumClick = (index) => {
+    if (index === selectedIndex) {
+      navigate(`/player/${index}`);
+    } else {
+      setVinylVisible(false);
+      setTimeout(() => {
+        setSelectedIndex(index);
+        setVinylVisible(true);
+      }, 500);
+    }
+  };
+
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
+  const getBlurClass = (index) => {
+    return index === selectedIndex && hoveredIndex === index ? "blur-xs" : "";
   };
 
   return (
     <>
       <div className="bg-[#F5EDF0] min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-8 pb-8">
-        {/* Header */}
-        <div className="absolute top-4 left-4">
-          <h1 className="font-Magtis text-[36px] sm:text-[32px] font-extrabold text-customgray">"plak"</h1>
-          <p className="font-Magtis text-[16px] font-bold text-customgray mt-2">pick a song</p>
+        <div className="absolute top-[1rem] left-[1rem] z-50 pl-[0.5rem] pt-[0.5rem]">
+          <Link
+            to="/"
+            className="font-Magtis text-[3rem] font-extrabold text-customgray hover:text-customorange transition-colors duration-500"
+          >
+            "plak"
+          </Link>
+          <p className="font-Magtis font-bold text-customgray pl-[1.25rem]">
+            pick a song
+          </p>
         </div>
-
-        {/* Image Slider */}
-        <div className="relative h-[400px] sm:h-[300px] w-full max-w-[1000px] flex justify-center items-center mx-auto">
-          {images.map((img, index) => {
-            const className = getStyles(index);
-            return (
-              <div
-                key={index}
-                className={`absolute transition-all duration-500 cursor-pointer ${className}`}
-                onClick={() => setSelectedIndex(index)}
-              >
-                <div className="relative">
-                  {className === "selected" && (
-                    <div
-                      className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[200px] sm:w-[120px] h-[200px] sm:h-[120px] rounded-full overflow-hidden z-10 ${
+        <div className="relative h-[25rem] w-full max-w-[62.5rem] flex justify-center items-center mx-auto">
+          <div className="relative w-full flex justify-center items-center">
+            {images.map((img, index) => {
+              const className = getClassName(index);
+              const isSelected = className === "selected";
+              return (
+                <div
+                  key={index}
+                  className={`absolute transition-all duration-500 cursor-pointer ${getStyles(
+                    className
+                  )}`}
+                  onClick={() => handleAlbumClick(index)}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="relative">
+                    {isSelected && (
+                      <div
+                        className={`vinyl absolute left-1/2 -translate-x-1/2 top-0 w-[200px] h-[200px] rounded-full overflow-hidden z-0 transition-all duration-1000 ease-in-out
+                      ${
                         vinylVisible
-                          ? "opacity-100 scale-100 -translate-y-[45%] sm:-translate-y-[30%]"
+                          ? "opacity-100 scale-100 -translate-y-[45%] shadow-lg"
                           : "opacity-0 scale-80 translate-y-0"
                       }`}
-                    >
+                      >
+                        <div className="w-full h-full relative animate-spin-slow">
+                          <img
+                            src={img.src}
+                            alt={`Vinyl for ${img.albumName}`}
+                            className="w-full h-full object-cover opacity-90"
+                          />
+                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[3.125rem] h-[3.125rem] rounded-full bg-zinc-900">
+                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[0.625rem] h-[0.625rem] rounded-full bg-zinc-700" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <div className="relative">
                       <img
                         src={img.src}
-                        alt={`Vinyl for ${img.albumName}`}
-                        className="w-full h-full object-cover animate-spin-slow"
+                        alt={`Album cover for ${img.albumName}`}
+                        className={`w-[18.75rem] h-[18.75rem] rounded-sm transition-all duration-500 object-cover relative z-10 ring-1 ring-black/5 ${getBlurClass(
+                          index
+                        )}`}
                       />
+                      {isSelected && (
+                        <div className="pt-[1.25rem] px-[1.5rem] absolute inset-0 flex flex-col bg-customgray/50 rounded-lg shadow-md opacity-0 hover:opacity-100 transition-opacity duration-300 z-20">
+                          <div className="text-customWhite text-sm font-Lora space-y-[0.5rem]">
+                            <p className="font-semibold">Album:&nbsp;</p>
+                            <span className="font-normal">
+                              {img.album}&nbsp;
+                            </span>
+                            <span className="font-normal">
+                              ({img.albumForeignLang})
+                            </span>
+                            <p className="font-semibold">Release Date:&nbsp;</p>
+                            <span className="font-normal">{img.relDate}</span>
+                            <p className="font-semibold">Country:&nbsp;</p>
+                            <span className="font-normal">{img.country}</span>
+                            <p className="font-semibold">Genre:&nbsp;</p>
+                            <span className="font-normal">{img.genre}</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {isSelected && (
+                    <div className="absolute -bottom-[4rem] left-0 w-full text-center z-20 transition-all duration-300">
+                      <p className="text-lg font-Lora font-medium text-zinc-800">
+                        {img.artist}
+                      </p>
+                      <p className="text-base font-Lora text-zinc-500 font-light space-y-[0.25rem]">
+                        {img.albumName}
+                      </p>
                     </div>
                   )}
-                  <img
-                    src={img.src}
-                    alt={`Album cover for ${img.albumName}`}
-                    className={`${
-                      className === "selected"
-                        ? "w-[300px] sm:w-[180px] h-[300px] sm:h-[180px]"
-                        : "w-[200px] sm:w-[120px] h-[200px] sm:h-[120px]"
-                    } rounded-md shadow-md`}
-                  />
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-
-        {/* Navigation Buttons */}
-        <div className="absolute w-full flex justify-between items-center px-4 sm:px-8">
+        <div className="flex items-center justify-center bottom-0 mt-[2.5rem]">
           <button
-            className="text-zinc-600 hover:text-customorange transition duration-300"
+            className="px-[1.25rem] py-[0.5rem] text-customWhite rounded-lg bg-gradient-to-r from-customorange to-customgray text-md font-Inter hover:translate-y-[-0.125rem] transition-transform duration-300 shadow-md"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/player/${selectedIndex}`);
+            }}
+          >
+            Listen
+          </button>
+        </div>
+        <div className="absolute w-full flex justify-between items-center max-w-[62.5rem] mx-auto">
+          <button
+            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 -translate-x-[4rem]"
             onClick={() => moveToSelected("prev")}
+            aria-label="Previous image"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="40"
+              width="50"
+              height="50"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -109,13 +209,14 @@ const ImageSlider = () => {
             </svg>
           </button>
           <button
-            className="text-zinc-600 hover:text-customorange transition duration-300"
+            className="text-zinc-600 hover:text-customorange border-none bg-transparent transition-colors duration-300 translate-x-[4rem]"
             onClick={() => moveToSelected("next")}
+            aria-label="Next image"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="40"
+              width="50"
+              height="50"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -127,24 +228,8 @@ const ImageSlider = () => {
             </svg>
           </button>
         </div>
-
-        {/* Album Info */}
-        <div className="text-center mt-4">
-          <p className="text-lg sm:text-[16px] font-medium text-zinc-800">Hiromasa Suzuki</p>
-          <p className="text-base sm:text-[14px] font-normal text-zinc-500 mt-1">High Flying</p>
-        </div>
-
-        {/* Listen Button */}
-        <button
-          className="mt-3 w-[120px] sm:w-[80px] h-[40px] sm:h-[28px] bg-gradient-to-r from-customorange to-customgray text-[14px] font-medium text-customWhite rounded-md"
-          onClick={() => navigate(`/player/${selectedIndex}`)}
-        >
-          Listen
-        </button>
-
-        {/* Footer */}
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

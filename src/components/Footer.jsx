@@ -6,14 +6,14 @@ export default function Footer() {
     <>
       <div className="bg-customWhite flex justify-between items-center px-8 py-2 fixed bottom-0 left-0 w-full z-50 shadow-md">
         <div className="flex flex-col items-start">
-          <span className="text-[12px] text-customgray font-Inter">
+          <span className="text-[0.75rem] text-customgray font-Inter">
             Created by{" "}
           </span>
           <a
             href="https://ilyas-dev.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-customgray hover:text-customorange transition-colors duration-300 font-Magtis text-[16px] mt-1"
+            className="text-customgray hover:text-customorange transition-colors duration-300 font-Magtis text-[1rem] mt-1"
           >
               ilyas torun
             {/* <ButtonWithStyles text={"Ilyas Torun"} /> */}
