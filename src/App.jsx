@@ -4,6 +4,7 @@ import Albums from "./pages/Albums";
 import Player from "./pages/Player";
 import VolumeSlider from "./components/VolumeSlider";
 import PlakButton from "./components/PlakButton";
+import PlayerMobile from "./pages/PlayerMobile";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/slider" element={<VolumeSlider />} />
         <Route path="/plak" element={<PlakButton />} />
         {/* <Route path="/player" element={<Player />} /> */}
+        <Route path="/playermobile" element={<PlayerMobile />}  />
       </Routes>
     </BrowserRouter>
   );
